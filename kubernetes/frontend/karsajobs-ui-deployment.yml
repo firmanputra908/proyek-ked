@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-tier
+  labels:
+    app: karsajobs-ui
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: karsajobs-ui
+        tier: frontend
+    spec: 
+      containers:
+      - name: karsajobs-ui
+        image: ghcr.io/firmanputra908/karsajobs-ui:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8000
+          
